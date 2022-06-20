@@ -7,6 +7,16 @@ void game() {
     stars[i].act();
     i++;
   }
+  
+  Starfighter.show();
+  Starfighter.act();
+  
+  st++;
+  
+  if (st > 260) enter = true;
+  
+  if (enter == true) {
+  }
 }
 
 void gameClicks() {

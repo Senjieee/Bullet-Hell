@@ -1,6 +1,6 @@
 //Johnny Geng
 //2-3
-//June 17 2022
+//June 17 2022  
 //Bullet Hell
 
 PFont doom;
@@ -23,19 +23,30 @@ final int game = 1;
 final int pause = 2;
 final int gameOver = 3;
 
-boolean akey, dkey, wkey, skey;
+boolean left, right, up, down, shoot, boost;
 boolean flash;
+boolean enter;
 
 Star[] stars;
+Bullet[] bullets;
 int nStars;
 int iflash;
+int st;
 
+ArrayList<GameObject> objects;
+Starfighter Starfighter;
+ 
 void setup() {
   size(800, 800);
   mode = intro;
   rectMode(CENTER);
   textAlign(CENTER, CENTER);
   noStroke();
+  enter = false;
+  
+  objects = new ArrayList<GameObject>();
+  Starfighter = new Starfighter();
+  objects.add(Starfighter);
   
   iflash = 0;
   
