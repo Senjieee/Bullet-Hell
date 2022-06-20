@@ -23,15 +23,15 @@ final int game = 1;
 final int pause = 2;
 final int gameOver = 3;
 
-boolean left, right, up, down, shoot, boost;
+boolean left, right, up, down, shoot, boost, shield;
 boolean flash;
 boolean enter;
 
-Star[] stars;
-Bullet[] bullets;
-int nStars;
+float energy;
+
 int iflash;
 int st;
+int rechargeT;
 
 ArrayList<GameObject> objects;
 Starfighter Starfighter;
@@ -43,10 +43,12 @@ void setup() {
   textAlign(CENTER, CENTER);
   noStroke();
   enter = false;
+  shield = false;
+  energy = 600;
+  rechargeT = 0;
   
   objects = new ArrayList<GameObject>();
   Starfighter = new Starfighter();
-  objects.add(Starfighter);
   
   iflash = 0;
   
@@ -55,16 +57,6 @@ void setup() {
   
   doom = createFont("DooM.ttf", 200);
   textFont(doom);
-  
-  nStars = 200;
-  stars = new Star[nStars];
-  int i = 0;
-  while (i < nStars) {
-    stars[i] = new Star();
-    i++;
-  
-  background(0);
-  }
 }
 
 void draw() {
@@ -90,5 +82,20 @@ void draw() {
   
   if (iflash > 90) {
     iflash = 0;
+  }
+  
+  rechargeT--;
+  if (rechargeT < 0) rechargeT = 0;
+  if (energy > 600) energy = 600;
+  if (energy < 0) {
+    energy = 0;
+    rechargeT = 180;
+    boost = false;
+    shoot = false;
+    shield = false;
+  }
+  
+  if (boost == false && shield == false && shoot == false && rechargeT == 0) {
+    energy++;
   }
 }

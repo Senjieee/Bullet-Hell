@@ -3,8 +3,11 @@ void keyPressed() {
   if (key == 'd' || key == 'D') right = true;
   if (key == 'w' || key == 'W') up = true;
   if (key == 's' || key == 'S') down = true;
-  if (key == ' ') shoot = true;
-  if (keyCode == SHIFT) boost = true;
+  if (energy > 0) {
+    if (key == ' ') shoot = true;
+    if (keyCode == SHIFT) boost = true;
+    if (keyCode == ALT) shield = true;
+  }
 }
 
 void keyReleased() {
@@ -14,4 +17,5 @@ void keyReleased() {
   if (key == 's' || key == 'S') down = false;
   if (key == ' ') shoot = false;
   if (keyCode == SHIFT) boost = false;
+  if (keyCode == ALT) shield = false;
 }

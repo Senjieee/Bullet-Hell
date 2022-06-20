@@ -1,15 +1,19 @@
 void game() {
+  objects.add(0, new Star());
   fill(0, 10);
   rect(width/2, height/2, width, height);
-  int i = 0;
-  while (i < nStars) {
-    stars[i].show();
-    stars[i].act();
-    i++;
-  }
   
-  Starfighter.show();
-  Starfighter.act();
+  int i = 0;
+  while (i < objects.size()) {
+    GameObject s = objects.get(i);
+    s.act();
+    s.show();
+    if (s.lives == 0) {
+      objects.remove(i);
+    } else {
+      i++;
+    }
+  }
   
   st++;
   
@@ -17,6 +21,16 @@ void game() {
   
   if (enter == true) {
   }
+  
+  if (shield == true) {
+    fill(blue);
+    circle(Starfighter.x, Starfighter.y, 70);
+    energy--;
+  }
+  
+  fill(white);
+  textSize(30);
+  text(energy, 100, 100);
 }
 
 void gameClicks() {

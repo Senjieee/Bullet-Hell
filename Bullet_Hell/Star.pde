@@ -1,5 +1,4 @@
-class Star {
-  float x, y, vx, vy, size;
+class Star extends GameObject{
   
   Star() {
     x = random(0, width);
@@ -7,6 +6,7 @@ class Star {
     vx = 0;
     vy = random(1, 5);
     size = vy;
+    lives = 1;
   }
   
   void show() {
@@ -19,6 +19,7 @@ class Star {
     if (y > height+size) {
       y = -size;
     }
+    if (y > height) lives = 0;
   }
 
 }
