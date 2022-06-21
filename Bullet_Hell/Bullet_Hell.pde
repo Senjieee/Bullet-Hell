@@ -16,6 +16,13 @@ color purple = color(195, 0, 255);
 color grey = color(59, 53, 54);
 color black = color(0);
 color white = color(255);
+color silver = #C0C0C0;
+color grey2 = #404040;
+color blue2 = color(36, 173, 255);
+color blue3 = color(172, 224, 247);
+color heart1;
+color heart2;
+color heart3;
 
 int mode;
 final int intro = 0;
@@ -27,11 +34,12 @@ boolean left, right, up, down, shoot, boost, shield;
 boolean flash;
 boolean enter;
 
-float energy;
+float energy, eMeter;
 
 int iflash;
 int st;
 int rechargeT;
+int tt;
 
 ArrayList<GameObject> objects;
 Starfighter Starfighter;
@@ -44,8 +52,10 @@ void setup() {
   noStroke();
   enter = false;
   shield = false;
-  energy = 600;
+  energy = 1200;
   rechargeT = 0;
+  tt = 100;
+  eMeter = 200;
   
   objects = new ArrayList<GameObject>();
   Starfighter = new Starfighter();
@@ -54,6 +64,9 @@ void setup() {
   
   int starColor = 255;
   star = color(starColor, starColor, starColor);
+  heart1 = color(red);
+  heart2 = color(red);
+  heart3 = color(red);
   
   doom = createFont("DooM.ttf", 200);
   textFont(doom);
@@ -84,9 +97,15 @@ void draw() {
     iflash = 0;
   }
   
-  rechargeT--;
+  if (tt > 100) tt = 100;
+  if (boost == true) tt = 10;
+  else if (boost == false) tt++;
+  
+  if (mode == game) {
+    rechargeT--;
+  }
   if (rechargeT < 0) rechargeT = 0;
-  if (energy > 600) energy = 600;
+  if (energy > 1200) energy = 1200;
   if (energy < 0) {
     energy = 0;
     rechargeT = 180;
@@ -95,7 +114,20 @@ void draw() {
     shield = false;
   }
   
-  if (boost == false && shield == false && shoot == false && rechargeT == 0) {
+  if (shield == true) {
+    boost = false;
+    shoot = false;
+  }
+  
+  if (boost == false && shield == false && shoot == false && rechargeT == 0 && mode == game) {
     energy++;
   }
+  
+  eMeter = map(energy, 1200, 0, 200, 0);
+  
+  if (Starfighter.lives > 6) Starfighter.lives = 6;
+  
+  if (Starfighter.lives > 3) heart1 = color(yellow);
+  if (Starfighter.lives > 4) heart2 = color(yellow);
+  if (Starfighter.lives > 5) heart3 = color(yellow);
 }

@@ -1,12 +1,8 @@
 class Star extends GameObject{
   
   Star() {
-    x = random(0, width);
-    y = random(0, height);
-    vx = 0;
-    vy = random(1, 5);
-    size = vy;
-    lives = 1;
+    super(random(0, width), random(0, height), 0, 0, random(1, 5), white, 1);
+    vy = size;
   }
   
   void show() {

@@ -4,8 +4,10 @@ void keyPressed() {
   if (key == 'w' || key == 'W') up = true;
   if (key == 's' || key == 'S') down = true;
   if (energy > 0) {
-    if (key == ' ') shoot = true;
-    if (keyCode == SHIFT) boost = true;
+    if (shield == false) {
+      if (key == ' ') shoot = true;
+      if (keyCode == SHIFT) boost = true;
+    }
     if (keyCode == ALT) shield = true;
   }
 }
