@@ -1,20 +1,9 @@
 void game() {
-  objects.add(0, new Star());
-  objects.add(0, new Enemy());
+  addObjects();
+  gameEngine();
+  
   fill(0, tt);
   rect(width/2, height/2, width, height);
-  
-  int i = 0;
-  while (i < objects.size()) {
-    GameObject s = objects.get(i);
-    s.act();
-    s.show();
-    if (s.lives == 0) {
-      objects.remove(i);
-    } else {
-      i++;
-    }
-  }
   
   st++;
   
@@ -89,6 +78,30 @@ void game() {
   rectMode(CENTER);
   
   if (Starfighter.lives == 0) mode = gameOver;
+}
+
+void addObjects() {
+  objects.add(0, new Star());
+  if (enter == true) {
+    if (frameCount % 30 == 0) objects.add(0, new Enemy());
+  }
+}
+
+void gameEngine() {
+  int i = 0;
+  while (i < objects.size()) {
+    GameObject s = objects.get(i);
+    s.act();
+    s.show();
+    if (s.lives == 0) {
+      objects.remove(i);
+    } else {
+      i++;
+    }
+  }
+}
+
+void debug() {
 }
 
 void gameClicks() {

@@ -1,6 +1,6 @@
 class Starfighter extends GameObject{
   
-  int cooldown,  threshold;
+  int cooldown, threshold;
   
   Starfighter() {
     super(width/2, 1200, 0, 0, 40, red, 3);
@@ -16,12 +16,14 @@ class Starfighter extends GameObject{
         if (down == true) vy = 5;
         if (left == true) vx = -5;
         if (right == true) vx = 5;
+        threshold = 10;
       } else if (boost == true) {
         energy = energy - 2;
-        if (up == true) vy = -8;
-        if (down == true) vy = 8;
-        if (left == true) vx = -8;
-        if (right == true) vx = 8;
+        if (up == true) vy = -10;
+        if (down == true) vy = 10;
+        if (left == true) vx = -10;
+        if (right == true) vx = 10;
+        threshold = 5;
       }
     
       if (!up && !down) vy = vy * 0.9;
@@ -29,8 +31,9 @@ class Starfighter extends GameObject{
       
       if (shoot == true && cooldown >= threshold) {
         objects.add(new Bullet());
-        energy--;
         cooldown = 0;
+        if (boost == false) energy--;
+        if (boost == true) energy = energy - 2;
       }
       
       if (x > width) {
@@ -50,18 +53,40 @@ class Starfighter extends GameObject{
     super.act();
     
     if(enter == false) vy = -2;
+    
+    int i = 0;
+    while (i < objects.size()) {
+      GameObject obj = objects.get(i);
+      if (obj instanceof EnemyBullet) {
+        if (collidingWith(obj) && shield == false) {
+          lives--;
+          obj.lives--;
+        }
+        if (shield == true) {
+          if (dist(obj.x, obj.y, x, y) < obj.size/2 + 100) {
+            obj.lives--;
+            energy = energy - 30;
+          }
+        }
+      }
+      i++;
+    }
   }
   
   void show() {
     fill(silver);
     triangle (x, y, x + 70, y + 20, x, y + 20);
     triangle (x, y, x - 70, y + 20, x, y + 20);
+    fill(blue2);
+    ellipse (x, y + 2, 30, 100);
+    ellipse(x - 67, y + 22, 5, 40);
+    ellipse(x + 67, y + 22, 5, 40);
     fill(c);
     ellipse (x, y, 30, 100);
     fill(blue3);
     ellipse(x, y - 15, 10, 30);
     fill(yellow);
-    ellipse(x - 65, y + 20, 5, 40);
-    ellipse(x + 65, y + 20, 5, 40);
+    ellipse(x - 67, y + 20, 5, 40);
+    ellipse(x + 67, y + 20, 5, 40);
   }
 }

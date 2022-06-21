@@ -1,10 +1,22 @@
 class Bullet extends GameObject {
   Bullet() {
-    super(Starfighter.x, Starfighter.y, 0, -10, 10, red, 1);
+    super(Starfighter.x, Starfighter.y - 30, 0, -10, 10, orange, 1);
   }
   
   void act() {
     super.act();
     if (offScreen()) lives = 0;
+    
+    int i = 0;
+    while (i < objects.size()) {
+      GameObject obj = objects.get(i);
+      if (obj instanceof EnemyBullet) {
+        if (collidingWith(obj)) {
+          lives--;
+          obj.lives--;
+        }
+      }
+      i++;
+    }
   }
 }
