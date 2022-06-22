@@ -13,6 +13,7 @@ class PowerUp extends GameObject {
   }
   
   void act() {
+    super.act();
     int i = 0;
     while (i < objects.size()) {
       GameObject obj = objects.get(i);
@@ -21,13 +22,27 @@ class PowerUp extends GameObject {
           lives = 0;
           p = random(0, 100);
           if (p >= 0 && p <= 25) Heart();
-          if (p > 25 && p <= 50) rapid = true;
-          if (p > 50 && p <= 75) pierce = true;
+          if (p > 25 && p <= 50) {
+            rapid = true;
+            if (rapid == true) rt = 0;
+          }
+          if (p > 50 && p <= 75) {
+            pierce = true;
+            if (pierce == true) pt = 0;
+          }
           if (p > 75 && p <= 100) Refill();
         }
       }
       i++;
     }
     if (offScreen()) lives = 0;
+    
+    if (lives == 0) {
+      explosion = color(white);
+            eLimit = 30;
+            ex = x;
+            ey = y;
+            objects.add(new Explosion());
+    }
   }
 }

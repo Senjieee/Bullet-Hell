@@ -86,7 +86,8 @@ void game() {
   if (rapid == true) {
     fill(white);
     textSize(20);
-    text("Rapid Fire: " + rttt + "s", 690, 20);
+    if (pierce == false) text("Rapid Fire: " + rttt + "s", 690, 20);
+    if (pierce == true) text("Rapid Fire: " + rttt + "s", 690, 50);
     Rapid();
     rt++;
   }

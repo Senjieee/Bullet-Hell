@@ -27,6 +27,11 @@ class Enemy3 extends GameObject {
         if (collidingWith(obj)) {
           lives--;
           obj.lives--;
+          explosion = color(orange2);
+          eLimit = 30;
+          ex = x;
+          ey = y;
+          objects.add(new Explosion());
         }
       }
       if (obj instanceof Starfighter) {
@@ -47,8 +52,21 @@ class Enemy3 extends GameObject {
     if (offScreen()) lives = 0;
     
     if (lives == 0) {
+      explosion = color(orange2);
+      eLimit = 100;
+      ex = x;
+      ey = y;
+      objects.add(new Explosion());
+    }
+    
+    if (lives == 0) {
       p = random(0, 100);
       if (p > 0 && p < 40) {
+        explosion = color(white);
+        eLimit = 30;
+        ex = x;
+        ey = y;
+        objects.add(new Explosion());
         px = x;
         py = y;
         objects.add(new PowerUp());

@@ -28,6 +28,7 @@ color orange2 = color(255, 196, 0);
 color heart1;
 color heart2;
 color heart3;
+color explosion;
 
 int mode;
 final int intro = 0;
@@ -42,6 +43,7 @@ boolean health, rapid, pierce, refill;
 
 float energy, eMeter;
 float p;
+float ex, ey, eSize, eLimit;
 
 int iflash;
 int st;
@@ -74,6 +76,7 @@ void setup() {
   py = py + pvy;
   pt = 0;
   rt = 0;
+  eSize = 0;
   
   objects = new ArrayList<GameObject>();
   Starfighter = new Starfighter();
@@ -85,6 +88,7 @@ void setup() {
   heart1 = color(red);
   heart2 = color(red);
   heart3 = color(red);
+  explosion = color(orange2);
   
   doom = createFont("DooM.ttf", 200);
   textFont(doom);

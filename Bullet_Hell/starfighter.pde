@@ -4,7 +4,8 @@ class Starfighter extends GameObject{
   
   Starfighter() {
     super(width/2, 1200, 0, 0, 40, red, 3);
-    threshold = 10;
+    if (rapid == false) threshold = 10;
+    if (rapid == true) threshold = 1;
     cooldown = threshold;
   }
   
@@ -16,14 +17,15 @@ class Starfighter extends GameObject{
         if (down == true) vy = 5;
         if (left == true) vx = -5;
         if (right == true) vx = 5;
-        threshold = 10;
+        if (rapid == false) threshold = 10;
+        if (rapid == true) threshold = 1;
       } else if (boost == true) {
         energy = energy - 2;
         if (up == true) vy = -10;
         if (down == true) vy = 10;
         if (left == true) vx = -10;
         if (right == true) vx = 10;
-        threshold = threshold * 2;
+        threshold = threshold/2;
       }
     
       if (!up && !down) vy = vy * 0.9;
@@ -61,15 +63,32 @@ class Starfighter extends GameObject{
         if (collidingWith(obj) && shield == false) {
           lives--;
           obj.lives--;
+          explosion = color(orange2);
+          eLimit = 30;
+          ex = x;
+          ey = y;
+          objects.add(new Explosion());
         }
         if (shield == true) {
           if (dist(obj.x, obj.y, x, y) < obj.size/2 + 100) {
             obj.lives--;
             energy = energy - 30;
+            explosion = color(orange2);
+            eLimit = 30;
+            ex = x;
+            ey = y;
+            objects.add(new Explosion());
           }
         }
       }
       i++;
+    }
+    if (lives == 0) {
+      explosion = color(orange2);
+      eLimit = 100;
+      ex = x;
+      ey = y;
+      objects.add(new Explosion());
     }
   }
   

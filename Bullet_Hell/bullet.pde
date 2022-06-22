@@ -14,6 +14,11 @@ class Bullet extends GameObject {
         if (collidingWith(obj)) {
           lives--;
           obj.lives--;
+          explosion = color(orange2);
+          eLimit = 30;
+          ex = x;
+          ey = y;
+          objects.add(new Explosion());
         }
       }
       i++;

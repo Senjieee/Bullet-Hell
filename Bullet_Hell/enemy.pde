@@ -24,6 +24,11 @@ class Enemy extends GameObject {
         if (collidingWith(obj)) {
           lives--;
           obj.lives--;
+          explosion = color(orange2);
+          eLimit = 100;
+          ex = x;
+          ey = y;
+          objects.add(new Explosion());
         }
       }
       if (obj instanceof Starfighter) {
@@ -31,11 +36,21 @@ class Enemy extends GameObject {
           if (collidingWith(obj)) {
             lives = 0;
             obj.lives = obj.lives - 2;
+            explosion = color(orange2);
+            eLimit = 100;
+            ex = x;
+            ey = y;
+            objects.add(new Explosion());
         }
         } else if (shield == true) {
           if (dist(obj.x, obj.y, x, y) < 100 + size/2) {
             lives = 0;
             energy = energy - 120;
+            explosion = color(orange2);
+            eLimit = 100;
+            ex = x;
+            ey = y;
+            objects.add(new Explosion());
           }
         }
         }
@@ -46,6 +61,11 @@ class Enemy extends GameObject {
     if (lives == 0) {
       p = random(0, 100);
       if (p > 0 && p < 10) {
+        explosion = color(white);
+        eLimit = 30;
+        ex = x;
+        ey = y;
+        objects.add(new Explosion());
         px = x;
         py = y;
         objects.add(new PowerUp());
