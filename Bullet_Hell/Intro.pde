@@ -11,10 +11,12 @@ void intro() {
     text("<click to start>", width/2, 700);
   }
   
+  fill(white);
   objects.add(new Star());
   fill(0, 10);
   rect(width/2, height/2, width, height);
   
+  fill(white);
   int i = 0;
   while (i < objects.size()) {
     GameObject s = objects.get(i);

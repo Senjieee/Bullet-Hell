@@ -1,6 +1,7 @@
 class Enemy3 extends GameObject {
   
   int cooldown, threshold;
+  boolean shield;
   
   Enemy3() {
     super(random(width), -20, 0, 3, 40, grey3, 3);
@@ -71,6 +72,18 @@ class Enemy3 extends GameObject {
         py = y;
         objects.add(new PowerUp());
       }
+    }
+  }
+  
+  void show() {
+    fill(c);
+    circle(x, y, size);
+    if (lives > 1) {
+      shield = true;
+      stroke(red2);
+      fill(red, 100);
+      circle(x, y, 50);
+      noStroke();
     }
   }
 }

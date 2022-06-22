@@ -3,7 +3,7 @@ class Enemy2 extends GameObject {
   int cooldown, threshold;
   
   Enemy2() {
-    super(random(width), -20, 0, 10, 20, white, 1);
+    super(random(width), -20, 0, 10, 20, silver, 1);
     threshold = 60;
     cooldown = threshold;
   }
@@ -74,5 +74,14 @@ class Enemy2 extends GameObject {
         objects.add(new PowerUp());
       }
     }
+  }
+  
+  void show() {
+    fill(yellow);
+    rect(x, y, 100, 20);
+    fill(c);
+    ellipse(x, y, size, 100);
+    fill(black);
+    rect(x, y, 3, 50);
   }
 }

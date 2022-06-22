@@ -118,12 +118,13 @@ void addObjects() {
 }
 
 void gameEngine() {
+  fill(white);
   int i = 0;
   while (i < objects.size()) {
     GameObject s = objects.get(i);
     s.act();
     s.show();
-    if (s.lives == 0) {
+    if (s.lives < 1) {
       objects.remove(i);
     } else {
       i++;

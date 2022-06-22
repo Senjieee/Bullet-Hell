@@ -51,6 +51,7 @@ int rechargeT;
 int tt;
 int bl;
 int pttt, rttt;
+int starColor;
 float px, py, pvy;
 float pt, rt;
 float ptt, rtt;
@@ -83,12 +84,12 @@ void setup() {
   
   iflash = 0;
   
-  int starColor = 255;
+  explosion = color(orange2);
+  starColor = 255;
   star = color(starColor, starColor, starColor);
   heart1 = color(red);
   heart2 = color(red);
   heart3 = color(red);
-  explosion = color(orange2);
   
   doom = createFont("DooM.ttf", 200);
   textFont(doom);

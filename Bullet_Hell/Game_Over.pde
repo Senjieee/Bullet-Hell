@@ -12,6 +12,7 @@ void gameOver() {
 }
 
 void gameOverClicks() {
+  starColor = 255;
   mode = intro;
   enter = false;
   energy = 1200;
@@ -23,7 +24,6 @@ void gameOverClicks() {
   pvy = 3;
   pt = 0;
   rt = 0;
-  explosion = color(orange2);
   Starfighter.x = width/2;
   Starfighter.y = 1200;
   Starfighter.vx = 0;
