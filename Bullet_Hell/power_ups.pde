@@ -20,6 +20,11 @@ class PowerUp extends GameObject {
       if (obj instanceof Starfighter) {
         if (collidingWith(obj)) {
           lives = 0;
+          explosion = color(white);
+          eLimit = 30;
+          ex = x;
+          ey = y;
+          objects.add(new Explosion());
           p = random(0, 100);
           if (p >= 0 && p <= 25) Heart();
           if (p > 25 && p <= 50) {
@@ -36,13 +41,5 @@ class PowerUp extends GameObject {
       i++;
     }
     if (offScreen()) lives = 0;
-    
-    if (lives == 0) {
-      explosion = color(white);
-            eLimit = 30;
-            ex = x;
-            ey = y;
-            objects.add(new Explosion());
-    }
   }
 }

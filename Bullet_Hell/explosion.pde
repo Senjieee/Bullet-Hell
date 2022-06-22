@@ -8,6 +8,7 @@ class Explosion extends GameObject {
     stroke(c);
     noFill();
     circle(x, y, size);
+    noStroke();
   }
   
   void act() {

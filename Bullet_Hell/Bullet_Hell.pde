@@ -86,7 +86,7 @@ void setup() {
   
   explosion = color(orange2);
   starColor = 255;
-  star = color(starColor, starColor, starColor);
+  star = color(white);
   heart1 = color(red);
   heart2 = color(red);
   heart3 = color(red);
