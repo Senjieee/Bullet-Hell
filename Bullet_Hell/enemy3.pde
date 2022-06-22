@@ -1,9 +1,9 @@
-class Enemy extends GameObject {
+class Enemy3 extends GameObject {
   
   int cooldown, threshold;
   
-  Enemy() {
-    super(random(width), -20, 0, 5, 20, brown, 1);
+  Enemy3() {
+    super(random(width), -20, 0, 3, 40, grey3, 3);
     threshold = 60;
     cooldown = threshold;
   }
@@ -13,6 +13,9 @@ class Enemy extends GameObject {
     super.act();
     
     if (cooldown >= threshold) {
+      objects.add(new EnemyBullet(x, y, 10, 0));
+      objects.add(new EnemyBullet(x, y, -10, 0));
+      objects.add(new EnemyBullet(x, y, 0, -10));
       objects.add(new EnemyBullet(x, y, 0, 10));
       cooldown = 0;
     }
@@ -35,7 +38,7 @@ class Enemy extends GameObject {
         } else if (shield == true) {
           if (dist(obj.x, obj.y, x, y) < 100 + size/2) {
             lives = 0;
-            energy = energy - 120;
+            energy = energy - 360;
           }
         }
         }
@@ -45,28 +48,11 @@ class Enemy extends GameObject {
     
     if (lives == 0) {
       p = random(0, 100);
-      if (p > 0 && p < 10) {
+      if (p > 0 && p < 40) {
         px = x;
         py = y;
         objects.add(new PowerUp());
       }
     }
-  }
-  
-  void show() {
-    fill(red2);
-    ellipse(x - 50, y - 15, 10, 40);
-    ellipse(x + 50, y - 15, 10, 40);
-    fill(grey3);
-    triangle (x, y + 30, x + 70, y - 20, x, y - 20);
-    triangle (x, y + 30, x - 70, y - 20, x, y - 20);
-    stroke(black);
-    line(x + 10, y + 18, x + 58, y - 17);
-    line(x - 10, y + 18, x - 58, y - 17);
-    noStroke();
-    fill(c);
-    ellipse (x, y, 30, 100);
-    fill(green2);
-    ellipse(x, y - 15, 10, 30);
   }
 }

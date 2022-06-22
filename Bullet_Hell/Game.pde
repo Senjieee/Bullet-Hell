@@ -77,13 +77,42 @@ void game() {
   }
   rectMode(CENTER);
   
-  if (Starfighter.lives == 0) mode = gameOver;
+  if (Starfighter.lives < 1) {
+    mode = gameOver;
+    rapid = false;
+    pierce = false;
+  }
+  
+  if (rapid == true) {
+    fill(white);
+    textSize(20);
+    text("Rapid Fire: " + rttt + "s", 690, 20);
+    Rapid();
+    rt++;
+  }
+  if (rt > 1800) {
+    rapid = false;
+    rt = 0;
+  }
+  if (pierce == true) {
+    fill(white);
+    textSize(20);
+    text("Piercing Bullets: " + pttt + "s", 650, 20);
+    Piercing();
+    pt++;
+  }
+  if (pt > 1800) {
+    pierce = false;
+    pt = 0;
+  }
 }
 
 void addObjects() {
   objects.add(0, new Star());
   if (enter == true) {
-    if (frameCount % 30 == 0) objects.add(0, new Enemy());
+    if (frameCount % 120 == 0) objects.add(0, new Enemy());
+    if (frameCount % 360 == 0) objects.add(0, new Enemy2());
+    if (frameCount % 360 == 0) objects.add(0, new Enemy3());
   }
 }
 
@@ -99,9 +128,6 @@ void gameEngine() {
       i++;
     }
   }
-}
-
-void debug() {
 }
 
 void gameClicks() {

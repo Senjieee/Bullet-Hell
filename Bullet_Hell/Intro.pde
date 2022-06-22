@@ -1,6 +1,6 @@
 void intro() {
   colorMode(RGB);
-  
+  fill(white);
   textSize(20);
   text("welcome to", width/2, 260);
   textSize(80);

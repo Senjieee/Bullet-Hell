@@ -28,6 +28,6 @@ abstract class GameObject {
   }
   
   boolean offScreen() {
-    return x < 0 || x > width || y < -50 || y > height;
+    return x < 0 || x > width || y < -100 || y > height;
   }
 }

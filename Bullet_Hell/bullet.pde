@@ -1,6 +1,6 @@
 class Bullet extends GameObject {
   Bullet() {
-    super(Starfighter.x, Starfighter.y - 30, 0, -10, 10, orange, 1);
+    super(Starfighter.x, Starfighter.y - 30, 0, -10, 10, orange2, bl);
   }
   
   void act() {

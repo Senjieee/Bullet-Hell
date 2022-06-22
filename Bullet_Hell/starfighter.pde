@@ -23,7 +23,7 @@ class Starfighter extends GameObject{
         if (down == true) vy = 10;
         if (left == true) vx = -10;
         if (right == true) vx = 10;
-        threshold = 5;
+        threshold = threshold * 2;
       }
     
       if (!up && !down) vy = vy * 0.9;
